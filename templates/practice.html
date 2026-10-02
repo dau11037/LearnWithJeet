@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Code Lab · LearnWithJeet{% endblock %}
+{% block content %}
+<main class="mx-auto max-w-[1440px] px-5 py-10 lg:px-8 lg:py-14">
+  <section class="practice-hero rounded-[2rem] border border-white/10 bg-panel p-8 sm:p-12">
+    <div class="eyebrow"><span class="pulse-dot"></span> One place to practice</div>
+    <h1 class="mt-5 max-w-3xl text-5xl font-bold tracking-[-.06em] sm:text-7xl">Read it.<br><span class="gradient-text">Code it.</span></h1>
+    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-400">Choose a lesson for the idea you want to learn, then use the same Code Lab to experiment with Python or solve a challenge. No separate playground to find.</p>
+    <a href="#code-lab" class="shimmer-button mt-8 inline-flex rounded-xl bg-neon px-5 py-3 font-semibold text-ink">Start coding ↓</a>
+  </section>
+  <section class="mt-14 flex items-end justify-between"><div><p class="eyebrow">Learning path</p><h2 class="mt-3 text-3xl font-bold">Choose a concept</h2></div><a href="/learn" class="text-sm text-neon hover:text-white">Open full path →</a></section>
+  <div class="mt-6 grid gap-5 md:grid-cols-2">
+    {% for lesson in lessons %}
+    <a href="/learn/{{ lesson.slug }}" class="practice-card group rounded-3xl border border-white/10 bg-panel p-7">
+      <div class="flex items-center justify-between"><span class="lesson-number">TOPIC 0{{ loop.index }}</span>{% if lesson.slug in completed_lessons %}<span class="solved-mark">Done ✓</span>{% else %}<span class="difficulty difficulty-{{ lesson.level|lower }}">{{ lesson.level }}</span>{% endif %}</div>
+      <p class="mt-9 text-xs uppercase tracking-[.2em] text-violet-300">{{ lesson.track }}</p><h3 class="mt-3 text-2xl font-semibold group-hover:text-neon">{{ lesson.title }} <span class="arrow">↗</span></h3><p class="mt-3 leading-7 text-slate-400">{{ lesson.summary }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  <div id="code-lab" class="scroll-mt-28"><section class="mt-16 flex items-end justify-between"><div><p class="eyebrow">Practice here</p><h2 class="mt-3 text-3xl font-bold">Python Code Lab</h2></div><span class="text-sm text-slate-500">Run ideas instantly</span></section>
+  <section class="playground-shell mt-6 overflow-hidden rounded-3xl border border-white/10 bg-[#0d111c]">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4"><div class="flex items-center gap-3 text-sm"><span class="h-2.5 w-2.5 rounded-full bg-neon shadow-[0_0_12px_#9dff4f]"></span> Python 3 <span class="text-slate-600">/</span> practice.py</div><div class="flex gap-2"><button id="reset-playground" class="rounded-xl border border-white/10 px-4 py-2 text-xs text-slate-400 hover:text-white">Reset</button><button id="run-playground" class="rounded-xl bg-neon px-5 py-2 text-sm font-semibold text-ink hover:brightness-110">Run code</button></div></div>
+    <div class="grid lg:grid-cols-[1.35fr_.65fr]"><textarea id="playground-editor" spellcheck="false">def square(number: int) -> int:
+    return number * number
+
+print(square(8))</textarea><div class="border-t border-white/10 lg:border-l lg:border-t-0"><div class="border-b border-white/10 px-5 py-4"><label class="text-xs font-semibold uppercase tracking-[.2em] text-slate-500" for="playground-stdin">Standard input</label><textarea id="playground-stdin" class="mt-3 h-28 w-full resize-none rounded-xl border border-white/10 bg-black/20 p-3 font-mono text-sm text-slate-300 outline-none focus:border-neon/50" placeholder="Optional input"></textarea></div><div class="px-5 py-4"><div class="flex items-center justify-between"><span class="text-xs font-semibold uppercase tracking-[.2em] text-slate-500">Output</span><span id="playground-status" class="text-xs text-slate-600">Ready</span></div><pre id="playground-output" class="mt-4 min-h-48 whitespace-pre-wrap font-mono text-sm leading-6 text-slate-500">Run your code to see output here.</pre></div></div></div>
+  </section></div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script><script src="/static/playground.js"></script>
+{% endblock %}

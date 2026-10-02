@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Learn Python · LearnWithJeet{% endblock %}
+{% block content %}
+<main class="mx-auto max-w-[1440px] px-5 py-10 lg:px-8 lg:py-16">
+  <section class="hero-grid relative overflow-hidden rounded-[2rem] border border-white/10 bg-panel p-7 sm:p-10 lg:p-14">
+    <div class="relative z-10 max-w-2xl">
+      <div class="eyebrow"><span class="pulse-dot"></span> Your Python learning workspace</div>
+      <h1 class="mt-6 text-5xl font-bold leading-[.98] tracking-[-.06em] sm:text-7xl">Learn Python.<br><span class="gradient-text">One idea at a time.</span></h1>
+      <p class="mt-7 max-w-xl text-base leading-7 text-slate-400 sm:text-lg">Follow a clear path from Python fundamentals to problem solving. Read the concept, try the example, then write your own code in the Code Lab.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        {% if next_lesson %}<a href="/learn/{{ next_lesson.slug }}" class="shimmer-button inline-flex items-center gap-3 rounded-2xl bg-neon px-5 py-3.5 font-semibold text-ink">Continue learning <span>→</span></a>{% endif %}
+        <a href="/practice#code-lab" class="inline-flex items-center rounded-2xl border border-white/10 px-5 py-3.5 text-sm text-slate-300 transition hover:border-neon/40 hover:text-neon">Open Code Lab</a>
+      </div>
+    </div>
+    <div class="hero-orbit" aria-hidden="true"><div class="orbit-core">PY</div><div class="orbit-ring ring-a"></div><div class="orbit-ring ring-b"></div><span class="orbit-chip chip-one">01</span><span class="orbit-chip chip-two">RUN</span><span class="orbit-chip chip-three">BUILD</span></div>
+  </section>
+  <section class="mt-6 grid gap-4 sm:grid-cols-3">
+    <div class="stat-card"><span class="stat-icon">✓</span><div><p class="stat-value">{{ completed_lessons|length }}/{{ lessons|length }}</p><p class="stat-label">Lessons completed</p></div></div>
+    <div class="stat-card"><span class="stat-icon violet">⌘</span><div><p class="stat-value">{{ solved_ids|length }}</p><p class="stat-label">Problems solved</p></div></div>
+    <div class="stat-card"><span class="stat-icon amber">⚡</span><div><p class="stat-value">Python</p><p class="stat-label">Your current track</p></div></div>
+  </section>
+  <section class="mt-14 flex items-end justify-between"><div><p class="eyebrow">Your guided path</p><h2 class="mt-3 text-3xl font-bold tracking-tight">Pick up where you left off</h2></div><a href="/learn" class="text-sm text-neon hover:text-white">View all topics →</a></section>
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    {% for lesson in lessons[:4] %}
+    <a href="/learn/{{ lesson.slug }}" class="lesson-card group rounded-3xl border border-white/10 bg-panel p-7">
+      <div class="flex items-center justify-between"><span class="lesson-number">0{{ loop.index }}</span>{% if lesson.slug in completed_lessons %}<span class="solved-mark">Completed ✓</span>{% else %}<span class="difficulty difficulty-{{ lesson.level|lower }}">{{ lesson.level }}</span>{% endif %}</div>
+      <p class="mt-9 text-xs font-medium uppercase tracking-[.2em] text-violet-300">{{ lesson.track }}</p>
+      <h3 class="mt-3 text-2xl font-semibold transition group-hover:text-neon">{{ lesson.title }} <span class="arrow">↗</span></h3>
+      <p class="mt-3 leading-7 text-slate-400">{{ lesson.summary }}</p>
+      <div class="mt-7 flex items-center justify-between border-t border-white/10 pt-5 text-xs text-slate-500"><span>{{ lesson.minutes }} min read</span><span class="text-slate-300">{% if lesson.slug in completed_lessons %}Review topic →{% else %}Start topic →{% endif %}</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

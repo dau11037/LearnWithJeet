@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Learn Python · LearnWithJeet{% endblock %}
+{% block content %}
+<main class="mx-auto max-w-[1440px] px-5 py-10 lg:px-8 lg:py-16">
+  <section class="learn-hero rounded-[2rem] border border-white/10 bg-panel p-8 sm:p-12">
+    <div class="eyebrow"><span class="pulse-dot"></span> Python handbook</div>
+    <h1 class="mt-5 max-w-3xl text-5xl font-bold tracking-[-.06em] sm:text-7xl">Learn the idea.<br><span class="gradient-text">Then write it.</span></h1>
+    <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-400">Deep, practical Python notes written for real understanding — not memorizing syntax. Read the concept, study the example, then practice it in the coding room.</p>
+    <div class="mt-8 flex flex-wrap gap-3 text-xs text-slate-400"><span class="meta-pill">{{ lessons|length }} guided lessons</span><span class="meta-pill">Runnable examples</span><span class="meta-pill">Interview-ready notes</span></div>
+  </section>
+  <section class="mt-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><p class="eyebrow">Your guided path</p><h2 class="mt-3 text-3xl font-bold tracking-tight">Build your Python foundation</h2><p class="mt-3 text-slate-400">{{ completed_lessons|length }} of {{ lessons|length }} topics completed. Follow the order or jump anywhere.</p></div><a href="/practice#code-lab" class="text-sm text-neon hover:text-white">Open Code Lab →</a></section>
+  <div class="mt-6 grid gap-5 lg:grid-cols-2">
+    {% for lesson in lessons %}
+    <a href="/learn/{{ lesson.slug }}" class="lesson-card group rounded-3xl border border-white/10 bg-panel p-7">
+      <div class="flex items-center justify-between"><span class="lesson-number">0{{ loop.index }}</span>{% if lesson.slug in completed_lessons %}<span class="solved-mark">Completed ✓</span>{% else %}<span class="difficulty difficulty-{{ lesson.level|lower }}">{{ lesson.level }}</span>{% endif %}</div>
+      <p class="mt-10 text-xs font-medium uppercase tracking-[.2em] text-violet-300">{{ lesson.track }}</p>
+      <h3 class="mt-3 text-2xl font-semibold transition group-hover:text-neon">{{ lesson.title }} <span class="arrow">↗</span></h3>
+      <p class="mt-3 max-w-xl leading-7 text-slate-400">{{ lesson.summary }}</p>
+      <div class="mt-7 flex items-center justify-between border-t border-white/10 pt-5 text-xs text-slate-500"><span>{{ lesson.minutes }} min read</span><span class="text-slate-300">{% if lesson.slug in completed_lessons %}Review lesson →{% else %}Start lesson →{% endif %}</span></div>
+    </a>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

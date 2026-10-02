@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Python playground · LearnWithJeet{% endblock %}
+{% block content %}
+<main class="mx-auto max-w-[1440px] px-5 py-9 lg:px-8 lg:py-14">
+  <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><div class="eyebrow"><span class="pulse-dot"></span> Instant Python lab</div><h1 class="mt-4 text-5xl font-bold tracking-[-.05em]">Playground<span class="text-neon">.</span></h1><p class="mt-4 max-w-xl text-slate-400">Experiment with the ideas from your lessons. This runner accepts standard input, prints output, and stops programs that run too long.</p></div><a href="/learn" class="text-sm text-neon hover:text-white">Need a concept? Read lessons →</a></div>
+  <section class="playground-shell mt-10 overflow-hidden rounded-3xl border border-white/10 bg-[#0d111c]">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-5 py-4"><div class="flex items-center gap-3 text-sm"><span class="h-2.5 w-2.5 rounded-full bg-neon shadow-[0_0_12px_#9dff4f]"></span> Python 3 <span class="text-slate-600">/</span> playground.py</div><div class="flex gap-2"><button id="reset-playground" class="rounded-xl border border-white/10 px-4 py-2 text-xs text-slate-400 hover:text-white">Reset</button><button id="run-playground" class="rounded-xl bg-neon px-5 py-2 text-sm font-semibold text-ink hover:brightness-110">Run code <span class="ml-1">⌘↵</span></button></div></div>
+    <div class="grid lg:grid-cols-[1.35fr_.65fr]"><textarea id="playground-editor" spellcheck="false">def greet(name: str) -> str:
+    """Return a small welcome message."""
+    return f"Hello, {name}!"
+
+name = input("Your name: ")
+print(greet(name))</textarea><div class="border-t border-white/10 lg:border-l lg:border-t-0"><div class="border-b border-white/10 px-5 py-4"><label class="text-xs font-semibold uppercase tracking-[.2em] text-slate-500" for="playground-stdin">Standard input</label><textarea id="playground-stdin" class="mt-3 h-28 w-full resize-none rounded-xl border border-white/10 bg-black/20 p-3 font-mono text-sm text-slate-300 outline-none focus:border-neon/50" placeholder="Ada"></textarea></div><div class="px-5 py-4"><div class="flex items-center justify-between"><span class="text-xs font-semibold uppercase tracking-[.2em] text-slate-500">Output</span><span id="playground-status" class="text-xs text-slate-600">Ready</span></div><pre id="playground-output" class="mt-4 min-h-48 whitespace-pre-wrap font-mono text-sm leading-6 text-slate-500">Run your code to see output here.</pre></div></div></div>
+  </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/loader.min.js"></script>
+<script src="/static/playground.js"></script>
+{% endblock %}

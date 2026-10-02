@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ lesson.title }} · LearnWithJeet{% endblock %}
+{% block content %}
+<main class="mx-auto max-w-[1240px] px-5 py-9 lg:px-8 lg:py-14">
+  <a href="/learn" class="inline-flex items-center gap-2 text-sm text-slate-500 transition hover:text-neon">← All Python lessons</a>
+  <header class="lesson-header mt-8 border-b border-white/10 pb-12">
+    <div class="eyebrow">{{ lesson.track }} <span class="text-slate-700">/</span> {{ lesson.minutes }} min</div>
+    <h1 class="mt-5 max-w-4xl text-5xl font-bold tracking-[-.055em] sm:text-7xl">{{ lesson.title }}</h1>
+    <p class="mt-6 max-w-3xl text-xl leading-8 text-slate-400">{{ lesson.summary }}</p>
+    <div class="mt-7 flex flex-wrap gap-2"><span class="meta-pill">{{ lesson.level }}</span><span class="meta-pill">Python 3</span><span class="meta-pill">Concept → example → practice</span></div>
+  </header>
+  <div class="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_280px]">
+    <article class="lesson-content">
+      <section class="callout"><p class="eyebrow">Why this matters</p><p class="mt-4 text-lg leading-8 text-slate-200">{{ lesson.why }}</p></section>
+      {% for section in lesson.sections %}
+      <section class="lesson-section"><h2>{{ loop.index }}. {{ section.heading }}</h2><p>{{ section.body }}</p>{% if section.bullets %}<ul>{% for bullet in section.bullets %}<li>{{ bullet }}</li>{% endfor %}</ul>{% endif %}</section>
+      {% endfor %}
+      <section class="lesson-section"><div class="flex items-center justify-between gap-4"><h2>Code it yourself</h2><a href="/coding" class="text-sm text-neon hover:text-white">Open coding room →</a></div><p>Read the code once, predict its output, then run a variation in the editor.</p><pre class="lesson-code"><code>{{ lesson.code }}</code></pre></section>
+      <section class="lesson-section mistakes"><h2>Common mistakes</h2><ul>{% for mistake in lesson.mistakes %}<li>{{ mistake }}</li>{% endfor %}</ul></section>
+      <section class="takeaway"><p class="eyebrow">Keep these</p><h2 class="mt-3 text-2xl font-bold">The short version</h2><ul class="mt-5 space-y-3">{% for takeaway in lesson.takeaways %}<li><span>✓</span>{{ takeaway }}</li>{% endfor %}<li class="mt-5 border-t border-white/10 pt-5"><button id="complete-lesson" data-slug="{{ lesson.slug }}" class="rounded-xl bg-neon px-4 py-3 font-semibold text-ink transition hover:brightness-110">{% if lesson.slug in completed_lessons %}Topic completed ✓{% else %}Mark topic complete{% endif %}</button><span id="complete-message" class="ml-3 text-sm text-slate-400"></span></li></ul></section>
+    </article>
+    <aside class="hidden lg:block"><div class="sticky top-28 rounded-2xl border border-white/10 bg-panel p-5"><p class="mono-label">In this lesson</p><ol class="mt-5 space-y-4 text-sm text-slate-400">{% for section in lesson.sections %}<li><span class="mr-2 text-neon">0{{ loop.index }}</span>{{ section.heading }}</li>{% endfor %}<li><span class="mr-2 text-neon">04</span>Code it yourself</li><li><span class="mr-2 text-neon">05</span>Short version</li></ol><a href="/coding" class="shimmer-button mt-7 block rounded-xl bg-neon px-4 py-3 text-center text-sm font-semibold text-ink">Practice now</a></div></aside>
+  </div>
+</main>
+<script>
+  const completeButton = document.getElementById("complete-lesson");
+  if (completeButton) {
+    completeButton.addEventListener("click", async () => {
+      completeButton.disabled = true;
+      const response = await fetch(`/api/lessons/${completeButton.dataset.slug}/complete`, {method: "POST"});
+      if (response.ok) {
+        completeButton.textContent = "Topic completed ✓";
+        document.getElementById("complete-message").textContent = "Progress saved";
+      } else {
+        completeButton.disabled = false;
+        document.getElementById("complete-message").textContent = "Could not save progress.";
+      }
+    });
+  }
+</script>
+{% endblock %}

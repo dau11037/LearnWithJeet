@@ -1,0 +1,329 @@
+[
+  {
+    "id": 1068,
+    "title": "Weird Algorithm",
+    "description": "Starting with a positive integer n, repeatedly divide it by two when it is even, or multiply it by three and add one when it is odd. Stop at one and return the complete sequence of values.",
+    "difficulty": "Easy",
+    "sample_input": "3",
+    "sample_output": "3 10 5 16 8 4 2 1",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    sequence = []\n    # Build and return the sequence, including n and 1.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 3}, "output": [3, 10, 5, 16, 8, 4, 2, 1]},
+      {"input": {"n": 1}, "output": [1]},
+      {"input": {"n": 6}, "output": [6, 3, 10, 5, 16, 8, 4, 2, 1]}
+    ]
+  },
+  {
+    "id": 1083,
+    "title": "Missing Number",
+    "description": "You are given every number from 1 to n except one. Return the missing number.",
+    "difficulty": "Easy",
+    "sample_input": "5\n2 3 1 5",
+    "sample_output": "4",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    numbers = data[\"numbers\"]\n    # Return the one number missing from 1..n.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 5, "numbers": [2, 3, 1, 5]}, "output": 4},
+      {"input": {"n": 2, "numbers": [1]}, "output": 2},
+      {"input": {"n": 7, "numbers": [1, 2, 4, 7, 3, 6]}, "output": 5}
+    ]
+  },
+  {
+    "id": 1069,
+    "title": "Repetitions",
+    "description": "Given a DNA sequence containing A, C, G, and T, return the length of its longest substring made from only one repeated character.",
+    "difficulty": "Easy",
+    "sample_input": "ATTCGGGA",
+    "sample_output": "3",
+    "starter_code": "def solve(data):\n    sequence = data[\"sequence\"]\n    # Track the current run and the longest run seen so far.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"sequence": "ATTCGGGA"}, "output": 3},
+      {"input": {"sequence": "AAAA"}, "output": 4},
+      {"input": {"sequence": "ACGT"}, "output": 1}
+    ]
+  },
+  {
+    "id": 1094,
+    "title": "Increasing Array",
+    "description": "Modify an array by increasing elements so every element is at least as large as the previous one. Return the minimum number of increments.",
+    "difficulty": "Easy",
+    "sample_input": "5\n3 2 5 1 7",
+    "sample_output": "5",
+    "starter_code": "def solve(data):\n    numbers = data[\"numbers\"]\n    # Greedily lift each value to the previous value when needed.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"numbers": [3, 2, 5, 1, 7]}, "output": 5},
+      {"input": {"numbers": [1, 2, 3]}, "output": 0},
+      {"input": {"numbers": [5, 4, 3]}, "output": 3}
+    ]
+  },
+  {
+    "id": 1070,
+    "title": "Permutations",
+    "description": "Construct a permutation of 1..n where no adjacent values differ by exactly one. Return the permutation, or the string NO SOLUTION when none exists.",
+    "difficulty": "Easy",
+    "sample_input": "5",
+    "sample_output": "4 2 5 3 1",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    if n in (2, 3):\n        return \"NO SOLUTION\"\n    # A valid construction groups even numbers before odd numbers.\n    return list(range(2, n + 1, 2)) + list(range(1, n + 1, 2))",
+    "hidden_test_cases": [
+      {"input": {"n": 5}, "output": [2, 4, 1, 3, 5]},
+      {"input": {"n": 3}, "output": "NO SOLUTION"},
+      {"input": {"n": 1}, "output": [1]}
+    ]
+  },
+  {
+    "id": 1071,
+    "title": "Number Spiral",
+    "description": "A number spiral fills an infinite grid. For each row y and column x, return the number at that position.",
+    "difficulty": "Medium",
+    "sample_input": "3\n2 3\n1 1\n4 2",
+    "sample_output": "8\n1\n15",
+    "starter_code": "def solve(data):\n    y, x = data[\"y\"], data[\"x\"]\n    # Use the larger coordinate as the square's outer layer.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"y": 2, "x": 3}, "output": 8},
+      {"input": {"y": 1, "x": 1}, "output": 1},
+      {"input": {"y": 4, "x": 2}, "output": 15},
+      {"input": {"y": 3, "x": 3}, "output": 7}
+    ]
+  },
+  {
+    "id": 1072,
+    "title": "Two Knights",
+    "description": "For every board size k from 1 to n, return the number of ways to place two knights on a k by k board so that they do not attack each other.",
+    "difficulty": "Easy",
+    "sample_input": "8",
+    "sample_output": "0 6 28 96 252 550 1056 1848",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    answers = []\n    # For each k, subtract the attacking knight pairs from all pairs.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 1}, "output": [0]},
+      {"input": {"n": 3}, "output": [0, 6, 28]},
+      {"input": {"n": 8}, "output": [0, 6, 28, 96, 252, 550, 1056, 1848]}
+    ]
+  },
+  {
+    "id": 1092,
+    "title": "Two Sets",
+    "description": "Divide the numbers 1..n into two sets with equal sum. Return a structured result containing possible and the two sets.",
+    "difficulty": "Easy",
+    "sample_input": "7",
+    "sample_output": "YES\n1 2 4 7\n3 5 6",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    total = n * (n + 1) // 2\n    if total % 2:\n        return {\"possible\": False}\n    # Return {\"possible\": True, \"first\": [...], \"second\": [...]}.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 7}, "output": {"possible": true, "first": [1, 2, 4, 7], "second": [3, 5, 6]}},
+      {"input": {"n": 6}, "output": {"possible": false}},
+      {"input": {"n": 3}, "output": {"possible": false}}
+    ]
+  },
+  {
+    "id": 1617,
+    "title": "Bit Strings",
+    "description": "Return the number of bit strings of length n modulo 1,000,000,007.",
+    "difficulty": "Easy",
+    "sample_input": "3",
+    "sample_output": "8",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    # There are 2^n bit strings. Apply the required modulo.\n    return pow(2, n, 1_000_000_007)",
+    "hidden_test_cases": [
+      {"input": {"n": 3}, "output": 8},
+      {"input": {"n": 1}, "output": 2},
+      {"input": {"n": 10}, "output": 1024}
+    ]
+  },
+  {
+    "id": 1618,
+    "title": "Trailing Zeros",
+    "description": "Return the number of trailing zeroes in n factorial.",
+    "difficulty": "Easy",
+    "sample_input": "20",
+    "sample_output": "4",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    answer = 0\n    # Count factors of 5 contributed by n!.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 20}, "output": 4},
+      {"input": {"n": 5}, "output": 1},
+      {"input": {"n": 100}, "output": 24}
+    ]
+  },
+  {
+    "id": 1754,
+    "title": "Coin Piles",
+    "description": "For each pair of piles a and b, determine whether repeatedly removing (1,2) or (2,1) coins can empty both piles.",
+    "difficulty": "Easy",
+    "sample_input": "3\n2 1\n2 2\n3 3",
+    "sample_output": "YES\nNO\nYES",
+    "starter_code": "def solve(data):\n    results = []\n    for a, b in data[\"tests\"]:\n        # A pair is possible when the total is divisible by 3 and neither pile is too large.\n        results.append(\"YES\" if (a + b) % 3 == 0 and max(a, b) <= 2 * min(a, b) else \"NO\")\n    return results",
+    "hidden_test_cases": [
+      {"input": {"tests": [[2, 1], [2, 2], [3, 3]]}, "output": ["YES", "NO", "YES"]},
+      {"input": {"tests": [[0, 0], [1, 0], [10, 5]]}, "output": ["YES", "NO", "YES"]}
+    ]
+  },
+  {
+    "id": 1755,
+    "title": "Palindrome Reorder",
+    "description": "Reorder the uppercase letters of a string into a palindrome, or report NO SOLUTION when it is impossible.",
+    "difficulty": "Easy",
+    "sample_input": "AAAACACBA",
+    "sample_output": "AACABACAA",
+    "starter_code": "from collections import Counter\n\ndef solve(data):\n    counts = Counter(data[\"text\"])\n    # Build the left half, optional center, and mirrored right half.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"text": "AAAACACBA"}, "output": "AACABACAA"},
+      {"input": {"text": "AB"}, "output": "NO SOLUTION"},
+      {"input": {"text": "A"}, "output": "A"}
+    ]
+  },
+  {
+    "id": 2205,
+    "title": "Gray Code",
+    "description": "Generate all 2^n binary strings of length n so consecutive strings differ in exactly one bit.",
+    "difficulty": "Easy",
+    "sample_input": "2",
+    "sample_output": "00\n01\n11\n10",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    # The i-th Gray code is i XOR (i shifted right by one).\n    return [format(i ^ (i >> 1), f\"0{n}b\") for i in range(1 << n)]",
+    "hidden_test_cases": [
+      {"input": {"n": 2}, "output": ["00", "01", "11", "10"]},
+      {"input": {"n": 1}, "output": ["0", "1"]},
+      {"input": {"n": 3}, "output": ["000", "001", "011", "010", "110", "111", "101", "100"]}
+    ]
+  },
+  {
+    "id": 2165,
+    "title": "Tower of Hanoi",
+    "description": "Move n disks from peg 1 to peg 3 using peg 2, never placing a larger disk on a smaller disk. Return the minimum move count and moves.",
+    "difficulty": "Easy",
+    "sample_input": "2",
+    "sample_output": "3\n1 2\n1 3\n2 3",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    moves = []\n    def move(disks, source, auxiliary, target):\n        # Recursively move the upper disks, then the largest disk.\n        pass\n    move(n, 1, 2, 3)\n    return {\"count\": len(moves), \"moves\": moves}",
+    "hidden_test_cases": [
+      {"input": {"n": 1}, "output": {"count": 1, "moves": [[1, 3]]}},
+      {"input": {"n": 2}, "output": {"count": 3, "moves": [[1, 2], [1, 3], [2, 3]]}}
+    ]
+  },
+  {
+    "id": 1622,
+    "title": "Creating Strings",
+    "description": "Generate all distinct strings that can be created using every character of the input, in alphabetical order.",
+    "difficulty": "Easy",
+    "sample_input": "aabac",
+    "sample_output": "20\naaabc\naaacb\naabac\naabca\naacab\naacba\nabaac\nabaca\nabcaa\nacaab\nacaba\nacbaa\nbaaac\nbaaca\nbacaa\nbcaaa\ncaaab\ncaaba\ncabaa\ncbaaa",
+    "starter_code": "from itertools import permutations\n\ndef solve(data):\n    text = data[\"text\"]\n    # Use a set for uniqueness, then sort lexicographically.\n    return sorted(\"\".join(chars) for chars in set(permutations(text)))",
+    "hidden_test_cases": [
+      {"input": {"text": "aab"}, "output": ["aab", "aba", "baa"]},
+      {"input": {"text": "abc"}, "output": ["abc", "acb", "bac", "bca", "cab", "cba"]},
+      {"input": {"text": "a"}, "output": ["a"]}
+    ]
+  },
+  {
+    "id": 1623,
+    "title": "Apple Division",
+    "description": "Split apple weights into two groups so the absolute difference between their total weights is as small as possible.",
+    "difficulty": "Easy",
+    "sample_input": "5\n3 2 7 4 1",
+    "sample_output": "1",
+    "starter_code": "from itertools import combinations\n\ndef solve(data):\n    weights = data[\"weights\"]\n    total = sum(weights)\n    # Search each subset; n is at most 20.\n    return min(abs(total - 2 * sum(group)) for size in range(len(weights) + 1) for group in combinations(weights, size))",
+    "hidden_test_cases": [
+      {"input": {"weights": [3, 2, 7, 4, 1]}, "output": 1},
+      {"input": {"weights": [1, 2, 3]}, "output": 0},
+      {"input": {"weights": [10]}, "output": 10}
+    ]
+  },
+  {
+    "id": 1624,
+    "title": "Chessboard and Queens",
+    "description": "Count ways to place eight non-attacking queens on an 8x8 board while avoiding reserved squares marked with *.",
+    "difficulty": "Medium",
+    "sample_input": "........\n........\n..*.....\n........\n........\n.....**.\n...*....\n........",
+    "sample_output": "65",
+    "starter_code": "def solve(data):\n    board = data[\"board\"]\n    # Backtrack row by row while tracking columns and diagonals.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"board": ["........", "........", "........", "........", "........", "........", "........", "........"]}, "output": 92},
+      {"input": {"board": ["........", "........", "..*.....", "........", "........", ".....**.", "...*....", "........"]}, "output": 65}
+    ]
+  },
+  {
+    "id": 3399,
+    "title": "Raab Game I",
+    "description": "Given n and target scores a and b, determine whether a game outcome is possible. Return whether a valid construction exists.",
+    "difficulty": "Easy",
+    "sample_input": "5\n4 1 2\n2 0 1\n3 0 0\n2 1 1\n4 4 1",
+    "sample_output": "YES\nNO\nYES\nYES\nNO",
+    "starter_code": "def solve(data):\n    answers = []\n    for n, a, b in data[\"tests\"]:\n        # Equal cards score no point; the remaining rounds must split into a wins and b wins.\n        answers.append(\"YES\" if a + b <= n and (n - a - b) != 1 else \"NO\")\n    return answers",
+    "hidden_test_cases": [
+      {"input": {"tests": [[4, 1, 2], [2, 0, 1], [3, 0, 0], [2, 1, 1], [4, 4, 1]]}, "output": ["YES", "NO", "YES", "YES", "NO"]},
+      {"input": {"tests": [[1, 0, 0], [1, 1, 0], [5, 2, 2]]}, "output": ["YES", "NO", "YES"]}
+    ]
+  },
+  {
+    "id": 3419,
+    "title": "Mex Grid Construction",
+    "description": "Construct an n by n grid where each cell is the smallest nonnegative integer not appearing to its left or above it.",
+    "difficulty": "Easy",
+    "sample_input": "3",
+    "sample_output": "0 1 2\n1 0 3\n2 3 0",
+    "starter_code": "def solve(data):\n    n = data[\"n\"]\n    # This construction is the bitwise XOR of row and column indices.\n    return [[row ^ column for column in range(n)] for row in range(n)]",
+    "hidden_test_cases": [
+      {"input": {"n": 1}, "output": [[0]]},
+      {"input": {"n": 3}, "output": [[0, 1, 2], [1, 0, 3], [2, 3, 0]]}
+    ]
+  },
+  {
+    "id": 3217,
+    "title": "Knight Moves Grid",
+    "description": "For every square on an n by n board, return the minimum knight moves needed to reach the top-left corner.",
+    "difficulty": "Medium",
+    "sample_input": "4",
+    "sample_output": "0 3 2 3\n3 4 1 2\n2 1 4 3\n3 2 3 2",
+    "starter_code": "from collections import deque\n\ndef solve(data):\n    n = data[\"n\"]\n    # Run BFS from the top-left square.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"n": 4}, "output": [[0, 3, 2, 3], [3, 4, 1, 2], [2, 1, 4, 3], [3, 2, 3, 2]]}
+    ]
+  },
+  {
+    "id": 3311,
+    "title": "Grid Coloring I",
+    "description": "Change every cell to a different letter from A-D while ensuring adjacent cells never have the same character. Return the resulting grid or IMPOSSIBLE.",
+    "difficulty": "Easy",
+    "sample_input": "3 4\nAAAA\nBBBB\nCCDD",
+    "sample_output": "CDCD\nDCDC\nABAB",
+    "starter_code": "def solve(data):\n    grid = data[\"grid\"]\n    colors = \"ABCD\"\n    result = []\n    # Choose a letter different from the original and both already-built neighbors.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"grid": ["A"]}, "output": ["B"]},
+      {"input": {"grid": ["AAAA", "BBBB", "CCDD"]}, "output": ["CDCD", "DCDC", "ABAB"]}
+    ]
+  },
+  {
+    "id": 2431,
+    "title": "Digit Queries",
+    "description": "For each 1-indexed position k in the infinite string 123456789101112..., return the digit at that position.",
+    "difficulty": "Medium",
+    "sample_input": "3\n7\n19\n12",
+    "sample_output": "7\n4\n1",
+    "starter_code": "def solve(data):\n    answers = []\n    for k in data[\"queries\"]:\n        # Skip complete blocks of numbers with equal digit length.\n        pass\n    return answers",
+    "hidden_test_cases": [
+      {"input": {"queries": [7, 19, 12]}, "output": ["7", "4", "1"]},
+      {"input": {"queries": [1, 9, 10, 11, 12]}, "output": ["1", "9", "1", "0", "1"]}
+    ]
+  },
+  {
+    "id": 1743,
+    "title": "String Reorder",
+    "description": "Return the lexicographically smallest rearrangement of a string where no two adjacent characters are equal, or -1 when impossible.",
+    "difficulty": "Medium",
+    "sample_input": "HATTIVATTI",
+    "sample_output": "AHATITITVT",
+    "starter_code": "from collections import Counter\nimport heapq\n\ndef solve(data):\n    text = data[\"text\"]\n    # Repeatedly choose the smallest available character different from the previous one.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"text": "AAB"}, "output": "ABA"},
+      {"input": {"text": "AAA"}, "output": "-1"},
+      {"input": {"text": "HATTIVATTI"}, "output": "AHATITITVT"}
+    ]
+  },
+  {
+    "id": 1625,
+    "title": "Grid Path Description",
+    "description": "Count paths through a 7x7 grid matching a 48-character description of U, D, L, R, and wildcard ? moves.",
+    "difficulty": "Hard",
+    "sample_input": "??????R??????U??????????????????????????LD????D?",
+    "sample_output": "201",
+    "starter_code": "def solve(data):\n    description = data[\"description\"]\n    # Use backtracking with corridor-pruning to count valid paths.\n    pass",
+    "hidden_test_cases": [
+      {"input": {"description": "????????????????????????????????????????????????"}, "output": 88418},
+      {"input": {"description": "??????R??????U??????????????????????????LD????D?"}, "output": 201}
+    ]
+  }
+]

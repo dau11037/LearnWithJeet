@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}LearnWithJeet{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { ink: "#080b13", panel: "#111624", neon: "#9dff4f", violet: "#8b5cf6" },
+      fontFamily: { display: ["Space Grotesk", "sans-serif"], mono: ["JetBrains Mono", "monospace"] }
+    }}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="min-h-screen bg-ink text-slate-100 font-display">
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <nav class="site-nav border-b border-white/10 bg-ink/75 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 lg:px-8">
+      <a href="/" class="flex items-center gap-3 text-xl font-bold tracking-tight">
+        <span class="brand-mark grid h-9 w-9 place-items-center rounded-xl bg-neon text-ink shadow-[0_0_30px_rgba(157,255,79,.3)]">J</span>
+        Learn<span class="text-neon">WithJeet</span>
+      </a>
+      <div class="flex items-center gap-3 text-sm text-slate-400 sm:gap-6">
+        {% if user %}<a href="/" class="nav-link hidden transition hover:text-white sm:inline">Home</a>
+        <a href="/learn" class="nav-link transition hover:text-white">Learning path</a>
+        <a href="/practice#code-lab" class="nav-link transition hover:text-white">Code Lab</a>
+        {% endif %}
+        {% if user %}
+        <span class="avatar hidden sm:grid">{{ user.name[0]|upper }}</span>
+        <a href="/logout" class="rounded-xl border border-white/10 px-3 py-2 transition hover:border-red-300/30 hover:text-red-200">Log out</a>
+        {% else %}
+        <a href="/login" class="rounded-xl border border-white/10 px-4 py-2 transition hover:border-neon/40 hover:text-neon">Log in</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  {% block content %}{% endblock %}
+</body>
+</html>
