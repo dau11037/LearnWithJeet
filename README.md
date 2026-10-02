@@ -32,7 +32,7 @@ This repository includes `api/index.py` and `vercel.json` so Vercel can load the
 JEETCODE_SECRET=<a-long-random-production-secret>
 ```
 
-The included SQLite database is suitable for local development only. Vercel serverless instances have ephemeral storage, so user accounts and submissions will not be durable after redeploys or instance recycling. Use a hosted database before treating the deployment as production.
+The included SQLite database is suitable for local development only. On Vercel, the app automatically places SQLite in writable `/tmp`, but that storage is ephemeral, so user accounts and submissions will not be durable after redeploys or instance recycling. Use a hosted database before treating the deployment as production.
 # LearnWithJeet
 # LearnWithJeet
 # LearnWithJeet

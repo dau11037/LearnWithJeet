@@ -22,7 +22,13 @@ from starlette.middleware.sessions import SessionMiddleware
 BASE_DIR = Path(__file__).resolve().parent
 PROBLEMS_FILE = BASE_DIR / "problems.json"
 LESSONS_FILE = BASE_DIR / "lessons.json"
-DATABASE_FILE = BASE_DIR / "jeetcode.db"
+# Vercel's deployed filesystem is read-only. /tmp is writable but ephemeral,
+# so a hosted database is still recommended when persistence matters.
+DATABASE_FILE = (
+    Path("/tmp/jeetcode.db")
+    if os.environ.get("VERCEL")
+    else BASE_DIR / "jeetcode.db"
+)
 
 app = FastAPI(title="LearnWithJeet", description="A modern Python learning and coding platform")
 app.add_middleware(
