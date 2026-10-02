@@ -26,10 +26,10 @@ body { overflow-x: hidden; background-image: radial-gradient(circle at 85% 0%, r
 .shimmer-button:before { position: absolute; top: 0; bottom: 0; left: -100%; width: 60%; background: linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent); content: ""; transform: skewX(-20deg); transition: left .6s ease; }
 .shimmer-button:hover:before { left: 130%; }
 .stat-card { display: flex; align-items: center; gap: 1rem; border: 1px solid rgba(255,255,255,.1); border-radius: 1.25rem; background: rgba(17,22,36,.65); padding: 1.1rem 1.25rem; }
-.stat-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: .8rem; background: rgba(157,255,79,.1); color: #9dff4f; font-weight: 700; }.stat-icon.violet { background: rgba(139,92,246,.14); color: #c4b5fd; }.stat-icon.amber { background: rgba(251,191,36,.12); color: #fcd34d; }
+.stat-icon { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border-radius: .8rem; background: rgba(157,255,79,.1); color: #9dff4f; font-weight: 700; }.stat-icon.violet { background: rgba(139,92,246,.14); color: #c4b5fd; }.stat-icon.blue { background: rgba(96,165,250,.14); color: #93c5fd; }
 .stat-value { font-size: 1.35rem; font-weight: 700; }.stat-label { margin-top: .15rem; color: #64748b; font-size: .75rem; }
 .mono-label { color: #64748b; font: .7rem "DM Mono",monospace; letter-spacing: .08em; }
-.difficulty, .solved-mark { border-radius: 999px; padding: .35rem .65rem; font-size: .68rem; font-weight: 600; }.difficulty-easy { background: rgba(157,255,79,.1); color: #9dff4f; }.difficulty-medium { background: rgba(251,191,36,.1); color: #fcd34d; }.difficulty-hard { background: rgba(248,113,113,.1); color: #fca5a5; }.solved-mark { background: rgba(157,255,79,.1); color: #9dff4f; }
+.difficulty, .solved-mark { border-radius: 999px; padding: .35rem .65rem; font-size: .68rem; font-weight: 600; }.difficulty-easy { background: rgba(45,212,191,.1); color: #5eead4; }.difficulty-medium { background: rgba(96,165,250,.12); color: #93c5fd; }.difficulty-hard { background: rgba(244,114,182,.12); color: #f9a8d4; }.solved-mark { background: rgba(157,255,79,.1); color: #9dff4f; }
 .search-box:focus-within { box-shadow: 0 0 0 1px rgba(157,255,79,.5); }
 .filter-btn { border-radius: .75rem; padding: .7rem .85rem; color: #64748b; font-size: .78rem; white-space: nowrap; transition: .2s ease; }.filter-btn:hover { color: #fff; }.filter-btn.active { background: rgba(157,255,79,.12); color: #9dff4f; }
 .reveal { animation: rise .6s both; }.catalog-card.is-hidden { display: none; }
@@ -55,6 +55,8 @@ body { overflow-x: hidden; background-image: radial-gradient(circle at 85% 0%, r
 .gradient-text { background: linear-gradient(100deg, #9dff4f, #d2ffb3 55%, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .problem-card { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
 .problem-card:hover { transform: translateY(-5px); border-color: rgba(157,255,79,.45); box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+.practice-problem-card { background: linear-gradient(145deg, rgba(17,22,36,.96), rgba(19,29,48,.86)); }
+.practice-problem-card:hover { border-color: rgba(96,165,250,.55); box-shadow: 0 20px 60px rgba(59,130,246,.12); }
 .arrow { color: #9dff4f; display: inline-block; transition: transform .25s ease; }
 .problem-card:hover .arrow { transform: translate(4px,-4px); }
 #editor { display: none; }

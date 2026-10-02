@@ -23,6 +23,16 @@ Edit `lessons.json` to add deep Python material. Each lesson contains a slug, su
 Edit `problems.json` to add coding challenges. Each hidden test case must use `input` and `output`; the submitted solution receives the input dictionary through `solve(data)`. Problem IDs must be unique. If a duplicate ID is accidentally pasted into either content file, LearnWithJeet keeps the first occurrence so it cannot create duplicate pages.
 
 The code runner is intentionally designed for local practice, not hostile multi-tenant execution. For a public deployment, run user code inside an isolated container or a separate sandbox service with resource limits.
+
+## Deploy on Vercel
+
+This repository includes `api/index.py` and `vercel.json` so Vercel can load the FastAPI app as a Python serverless function. Import the repository into Vercel, keep the project root at the repository root, and add this environment variable:
+
+```text
+JEETCODE_SECRET=<a-long-random-production-secret>
+```
+
+The included SQLite database is suitable for local development only. Vercel serverless instances have ephemeral storage, so user accounts and submissions will not be durable after redeploys or instance recycling. Use a hosted database before treating the deployment as production.
 # LearnWithJeet
 # LearnWithJeet
 # LearnWithJeet
